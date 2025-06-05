@@ -1,0 +1,5 @@
+accessWidener v2 named
+
+accessible method net/minecraft/client/render/GameRenderer updateFovMultiplier ()V
+accessible method net/minecraft/entity/LivingEntity getHandSwingDuration ()I
+accessible method net/minecraft/client/render/WorldRenderer renderWeather (Lnet/minecraft/client/render/FrameGraphBuilder;Lnet/minecraft/util/math/Vec3d;FLnet/minecraft/client/render/Fog;)V

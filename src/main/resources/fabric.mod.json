@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "mcrider_bug_fix",
+  "version": "${version}",
+  "name": "mcrider_bug_fix",
+  "description": "",
+  "authors": ["Sidite"],
+  "contact": {},
+  "license": "MIT License",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.gihub.cidite.test.mcrider_bug_fix.client.Mcrider_bug_fixClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "mcrider_bug_fix.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "suggests": {},
+  "accessWidener": "mcrider_bug_fix.accesswidener"
+}
