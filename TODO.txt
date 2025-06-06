@@ -4,7 +4,7 @@ TODO
 [O] gif 가속 해결
 [O] 파노라마 조정
 [O] 키 입력 및 시점 즉시 반영
+[O] 이제 필요 없는 믹스인 및 코드 제거
 [X] 2개의 패킷을 받을때 즉시 클라에 반영하기
 [X] EntityTrackerUpdateS2CPacket
 [X] EntityS2CPacket$MoveRelative
-[X] 이제 필요 없는 믹스인 제거
