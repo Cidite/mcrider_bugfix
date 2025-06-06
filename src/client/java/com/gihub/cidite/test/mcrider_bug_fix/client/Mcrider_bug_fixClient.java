@@ -14,7 +14,8 @@ public class Mcrider_bug_fixClient implements ClientModInitializer {
     public static boolean isRiding = false;
     public static byte displayEntityModification = 0;
     public static SimpleConfig CONFIG = SimpleConfig.of("mcrider_bugfix").provider(Mcrider_bug_fixClient::provider).request();
-    public static final int gameAcceleration = CONFIG.getOrDefault( "game_acceleration", 3 );
+    //public static final int gameAcceleration = CONFIG.getOrDefault( "game_acceleration", 3 );
+    public static final int gameAcceleration = 1;
 
 
     @Override
