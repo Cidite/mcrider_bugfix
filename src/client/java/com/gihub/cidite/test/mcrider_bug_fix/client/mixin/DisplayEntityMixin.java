@@ -28,7 +28,7 @@ public abstract class DisplayEntityMixin {
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/decoration/DisplayEntity;getInterpolationDuration()I"))
     private int getInterpolationDuration(DisplayEntity instance) {
         if (Mcrider_bug_fixClient.Riding) {
-            byte i = Mcrider_bug_fixClient.gameAcceleration;
+            int i = Mcrider_bug_fixClient.gameAcceleration;
             return this.getInterpolationDuration() * i;
         } else {
             return this.getInterpolationDuration();
@@ -37,7 +37,7 @@ public abstract class DisplayEntityMixin {
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/decoration/DisplayEntity;getStartInterpolation()I"))
     private int getStartInterpolation(DisplayEntity instance) {
         if (Mcrider_bug_fixClient.Riding) {
-            byte i = Mcrider_bug_fixClient.gameAcceleration;
+            int i = Mcrider_bug_fixClient.gameAcceleration;
             return this.getStartInterpolation() * i;
         } else {
             return this.getStartInterpolation();
@@ -48,14 +48,14 @@ public abstract class DisplayEntityMixin {
     private void tick(CallbackInfo ci) {
         if (Mcrider_bug_fixClient.Riding) {
             if (!isGameAcceleration) {
-                byte i = Mcrider_bug_fixClient.gameAcceleration;
+                int i = Mcrider_bug_fixClient.gameAcceleration;
                 this.setTeleportDuration(this.getTeleportDuration() * i);
                 //this.setInterpolationDuration(this.getInterpolationDuration() * i);
                 //this.setStartInterpolation(this.getStartInterpolation() * i);
                 isGameAcceleration = true;
             }
         } else if (isGameAcceleration) {
-            byte i = Mcrider_bug_fixClient.gameAcceleration;
+            int i = Mcrider_bug_fixClient.gameAcceleration;
             this.setTeleportDuration(this.getTeleportDuration() / i);
             //this.setInterpolationDuration(this.getInterpolationDuration() / i);
             //this.setStartInterpolation(this.getStartInterpolation() / i);
