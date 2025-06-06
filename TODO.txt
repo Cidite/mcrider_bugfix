@@ -7,3 +7,4 @@ TODO
 [X] 2개의 패킷을 받을때 즉시 클라에 반영하기
 [X] EntityTrackerUpdateS2CPacket
 [X] EntityS2CPacket$MoveRelative
+[X] 이제 필요 없는 믹스인 제거
