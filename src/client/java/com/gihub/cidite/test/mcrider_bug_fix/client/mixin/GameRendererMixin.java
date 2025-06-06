@@ -27,7 +27,7 @@ public abstract class GameRendererMixin {
 
     @Shadow public abstract MinecraftClient getClient();
 
-    @Unique private PlayerInput lastPlayerInput;
+    @Unique private PlayerInput lastPlayerInput = PlayerInput.DEFAULT;
 
     @Unique float lastYaw;
 
