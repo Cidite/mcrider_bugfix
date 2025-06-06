@@ -61,9 +61,7 @@ public abstract class MinecraftClientMixin {
         Profiler profiler = Profilers.get();
         profiler.push("isKartEntity");
         if (this.world != null) {
-            TickManager tickManager = this.world.getTickManager();
             if (isKartEntity()) {
-                tickManager.setTickRate((float) Mcrider_bug_fixClient.gameAcceleration * 20);
                 Mcrider_bug_fixClient.Riding = true;
                 if (Mcrider_bug_fixClient.displayEntityModification == 1) {
                     Mcrider_bug_fixClient.displayEntityModification = 2;
@@ -73,7 +71,6 @@ public abstract class MinecraftClientMixin {
                     Mcrider_bug_fixClient.displayEntityModification = 1;
                 }
             } else if (Mcrider_bug_fixClient.Riding) {
-                tickManager.setTickRate(20.0F);
                 Mcrider_bug_fixClient.Riding = false;
                 Mcrider_bug_fixClient.isRiding = false;
                 if (Mcrider_bug_fixClient.displayEntityModification == -1) {
