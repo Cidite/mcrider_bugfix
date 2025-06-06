@@ -46,17 +46,17 @@ public abstract class GameRendererMixin {
             ClientPlayerEntity player = getClient().player;
             if (player != null) {
                 GameOptions options = mc.options;
-		        PlayerInput mcInput = player.input.playerInput;
+		PlayerInput mcInput = player.input.playerInput;
 
-		        PlayerInput input = new PlayerInput(
-				        options.forwardKey.isPressed(),
-				        options.backKey.isPressed(),
-				        options.leftKey.isPressed(),
-				        options.rightKey.isPressed(),
-				        mcInput.jump(),
-				        mcInput.sneak(),
-				        mcInput.sprint()
-		        );
+		PlayerInput input = new PlayerInput(
+			options.forwardKey.isPressed(),
+			options.backKey.isPressed(),
+			options.leftKey.isPressed(),
+			options.rightKey.isPressed(),
+			mcInput.jump(),
+			mcInput.sneak(),
+			mcInput.sprint()
+		);
                 player.networkHandler.sendPacket(new PlayerInputC2SPacket(input));
 
                 player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(player.getYaw(), player.getPitch(), player.isOnGround(), player.horizontalCollision));
