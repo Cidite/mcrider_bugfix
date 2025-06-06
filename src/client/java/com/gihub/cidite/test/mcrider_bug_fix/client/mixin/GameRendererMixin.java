@@ -45,7 +45,7 @@ public abstract class GameRendererMixin {
         if (Mcrider_bug_fixClient.Riding) {
             ClientPlayerEntity player = getClient().player;
             if (player != null) {
-                GameOptions options = mc.options;
+                GameOptions options = getClient().options;
 		PlayerInput mcInput = player.input.playerInput;
 
 		PlayerInput input = new PlayerInput(
