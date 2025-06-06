@@ -22,6 +22,8 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.minecraft.client.option.GameOptions;
+import net.minecraft.util.PlayerInput;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
@@ -43,7 +45,19 @@ public abstract class GameRendererMixin {
         if (Mcrider_bug_fixClient.Riding) {
             ClientPlayerEntity player = getClient().player;
             if (player != null) {
-                player.networkHandler.sendPacket(new PlayerInputC2SPacket(player.input.playerInput));
+                GameOptions options = mc.options;
+		        PlayerInput mcInput = player.input.playerInput;
+
+		        PlayerInput input = new PlayerInput(
+				        options.forwardKey.isPressed(),
+				        options.backKey.isPressed(),
+				        options.leftKey.isPressed(),
+				        options.rightKey.isPressed(),
+				        mcInput.jump(),
+				        mcInput.sneak(),
+				        mcInput.sprint()
+		        );
+                player.networkHandler.sendPacket(new PlayerInputC2SPacket(input));
 
                 player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(player.getYaw(), player.getPitch(), player.isOnGround(), player.horizontalCollision));
                 Entity entity = player.getRootVehicle();
