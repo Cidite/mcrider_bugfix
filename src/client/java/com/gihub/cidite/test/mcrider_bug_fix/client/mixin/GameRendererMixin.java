@@ -13,6 +13,7 @@ import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
 import net.minecraft.util.PlayerInput;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.profiler.Profilers;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -31,15 +32,6 @@ public abstract class GameRendererMixin {
 
     @Unique float lastYaw;
 
-//    @ModifyConstant(method = "updateFovMultiplier", constant = @Constant(floatValue = 0.5F))
-//    private float updateFovMultiplier(float constant) {
-//        if (Mcrider_bug_fixClient.Riding) {
-//            return 0.5F / Mcrider_bug_fixClient.gameAcceleration;
-//        } else {
-//            return 0.5F;
-//        }
-//    }
-
     @Inject(method = "render", at = @At(value = "TAIL"))
     private void render(RenderTickCounter tickCounter, boolean tick, CallbackInfo ci) {
         Profiler profiler = Profilers.get();
@@ -47,18 +39,7 @@ public abstract class GameRendererMixin {
         if (Mcrider_bug_fixClient.Riding) {
             ClientPlayerEntity player = getClient().player;
             if (player != null) {
-                GameOptions options = getClient().options;
-                PlayerInput mcInput = player.input.playerInput;
-
-                PlayerInput input = new PlayerInput(
-                        options.forwardKey.isPressed(),
-                        options.backKey.isPressed(),
-                        options.leftKey.isPressed(),
-                        options.rightKey.isPressed(),
-                        mcInput.jump(),
-                        mcInput.sneak(),
-                        mcInput.sprint()
-                );
+                PlayerInput input = getPlayerInput(player);
 
                 //키 입력이 감지되면 패킷 발사
                 if (!this.lastPlayerInput.equals(input)) {
@@ -80,5 +61,21 @@ public abstract class GameRendererMixin {
             }
         }
         profiler.pop();
+    }
+
+    @Unique
+    private @NotNull PlayerInput getPlayerInput(ClientPlayerEntity player) {
+        GameOptions options = getClient().options;
+        PlayerInput mcInput = player.input.playerInput;
+
+        return new PlayerInput(
+                options.forwardKey.isPressed(),
+                options.backKey.isPressed(),
+                options.leftKey.isPressed(),
+                options.rightKey.isPressed(),
+                mcInput.jump(),
+                mcInput.sneak(),
+                mcInput.sprint()
+        );
     }
 }

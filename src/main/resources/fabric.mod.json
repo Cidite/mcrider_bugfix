@@ -4,8 +4,12 @@
   "version": "${version}",
   "name": "mcrider_bug_fix",
   "description": "",
-  "authors": ["Sidite"],
-  "contact": {},
+  "authors": [
+    "Sidite"
+  ],
+  "contact": {
+    "github": "https://github.com/Cidite/mcrider_bugfix"
+  },
   "license": "MIT License",
   "environment": "client",
   "entrypoints": {
@@ -24,6 +28,5 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}"
   },
-  "suggests": {},
-  "accessWidener": "mcrider_bug_fix.accesswidener"
+  "suggests": {}
 }
