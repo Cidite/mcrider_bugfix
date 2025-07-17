@@ -28,9 +28,8 @@ public abstract class MinecraftClientMixin {
         if (this.player != null) {
             if (this.player.hasVehicle()) {
                 Entity entity = this.player.getVehicle();
-                if (entity.getType() == EntityType.COD || entity.getType() == EntityType.ARMADILLO || entity.getType() == EntityType.INTERACTION && entity.getVehicle().getType() == EntityType.ITEM_DISPLAY) {
-                    return true;
-                }
+                EntityType<?> type = entity.getType();
+                return type == EntityType.COD || type == EntityType.ARMADILLO || type == EntityType.INTERACTION && entity.getVehicle().getType() == EntityType.ITEM_DISPLAY;
             }
         }
         return false;
